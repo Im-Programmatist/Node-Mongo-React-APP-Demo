@@ -56,7 +56,7 @@ We can divide folder structure in 3 parts -
 ### index.js - start point of the server application, here we mention express app and routes
 ### package.json & package-lock.json - package manager create this file, keep record of all the packages used in node project
 
-**Note: For complete MERN project setup please follow the link** `https://www.querythreads.com/how-to-organise-file-structure-of-backend-and-frontend-in-mern/`
+**Note: For complete MERN project setup please follow the link-** https://www.querythreads.com/how-to-organise-file-structure-of-backend-and-frontend-in-mern/
 
 3. For middleware refere link - 
 https://mongoosejs.com/docs/middleware.html#pre
