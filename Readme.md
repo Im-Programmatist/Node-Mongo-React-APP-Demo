@@ -56,12 +56,35 @@ We can divide folder structure in 3 parts -
 ### index.js - start point of the server application, here we mention express app and routes
 ### package.json & package-lock.json - package manager create this file, keep record of all the packages used in node project
 
-**Note: For complete MERN project setup please follow the link-** https://www.querythreads.com/how-to-organise-file-structure-of-backend-and-frontend-in-mern/
+**Note: For complete MERN project setup please follow the link -** https://www.querythreads.com/how-to-organise-file-structure-of-backend-and-frontend-in-mern/
 
-3. For middleware refere link - 
-https://mongoosejs.com/docs/middleware.html#pre
+**Note: For middleware refere link -** https://mongoosejs.com/docs/middleware.html#pre
 
-4. For virtual in mongoose refere link - 
-https://mongoosejs.com/docs/tutorials/virtuals.html
+**Note: For virtual in mongoose refere link -** https://mongoosejs.com/docs/tutorials/virtuals.html
 
-5. 
+## `Global`
+
+**1. Initiate Git and create gitignore file in root directory so that we can push our frontend and backend code in one respository**
+
+**2. Initiate node in root directory using `$ npm init`, this will create package.json for `global` root directory. In global directory we will going to install 2 packages - concurrently and nodemon**
+
+#### 1. `$ npm i concurrently --save-dev`
+- Concurrently is an npm package that allows you to run multiple commands concurrently.
+
+#### `$ npm i nodemon` 
+- Simple monitoring tool, tool that helps develop node. 
+
+**3. Change start and dev path under script in package.json in `Backend`folder, make it  `"test": "mocha", "start": "node index.js", "dev": "nodemon index.js"`**
+
+**4. Change dev path under script item in package.json of root directory, make it  `"dev": "concurrently \"cd Backend && npm run dev\" \"cd Frontend && npm start\" "`**
+
+
+**5. We can run separate project, inside the server `Backend directory` if you run  `$ npm run dev` then only server express app will run**
+
+**6. We can run separate project, inside the server `Front directory` if you run  `$ npm start` then only client react app will run**
+
+**7. We can run separate project, inside the server `Root directory` if you run  `$ npm run dev` then both client react app and server express app will run in this one command**
+
+**8. Just keep in mind both app must have different port to start.**
+
+## `Frontend`
