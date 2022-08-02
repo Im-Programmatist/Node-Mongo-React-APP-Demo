@@ -36,13 +36,21 @@ We can divide folder structure in 3 parts -
 5. Folder Structure as below -
 ### node_module - created by default using npm init
 ### src- Source where all working folder place
+
 **1. Configs - all database and other configuration detail files here**
+
 **2. Controllers - All the business logic files can create in this controller folder**
+
 **3. Middlewares - Pre or Post operation can perform respectively on request and response using middleware for all kind of routes**
+
 **4. Models - Database schema models come under this folder**
+
 **5. Routes - Route for all kind of  API**
+
 **6. Services - Services for API, all routes method and their query operation files keep in this folder**
+
 **7. Utils - Helper functions or global used files can keep in this folder**
+
 ### test - testing framework directory
 ### views - contains images and files
 ### index.js - start point of the server application, here we mention express app and routes
