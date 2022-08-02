@@ -89,7 +89,7 @@ We can divide folder structure in 3 parts -
 
 **5. We can run separate project, inside the server `Backend directory` if you run  `$ npm run dev` then only server express app will run**
 
-**6. We can run separate project, inside the server `Front directory` if you run  `$ npm start` then only client react app will run**
+**6. We can run separate project, inside the server `Frontend directory` if you run  `$ npm start` then only client react app will run**
 
 **7. We can run separate project, inside the server `Root directory` if you run  `$ npm run dev` then both client react app and server express app will run in this one command**
 
