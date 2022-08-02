@@ -35,7 +35,7 @@ We can divide folder structure in 3 parts -
 
 5. Folder Structure as below -
 ### node_module - created by default using npm init
-### src- Source where all working folder place
+### src- Source where all working folder place, this directory contains following folders ⬇️
 
 **1. Configs - all database and other configuration detail files here**
 
