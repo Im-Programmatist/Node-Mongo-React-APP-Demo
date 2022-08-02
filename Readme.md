@@ -34,16 +34,21 @@ We can divide folder structure in 3 parts -
 #### We will keep on adding packages as per our need
 
 5. Folder Structure as below -
-#### **node_module - created by default using npm init
-#### **src- Source where all working folder place
-#### test - testing framework directory
-#### views - contains images and files
-#### index.js - start point of the server application
-#### package.json & package-lock.json - package manager create this file, keep record of all the packages used in node project
-**For Express Js project structure - please refere below blog link https://blog.logrocket.com/organizing-express-js-project-structure-better-productivity/
+### node_module - created by default using npm init
+### src- Source where all working folder place
+**1. Configs - all database and other configuration detail files here**
+**2. Controllers - All the business logic files can create in this controller folder**
+**3. Middlewares - Pre or Post operation can perform respectively on request and response using middleware for all kind of routes**
+**4. Models - Database schema models come under this folder**
+**5. Routes - Route for all kind of  API**
+**6. Services - Services for API, all routes method and their query operation files keep in this folder**
+**7. Utils - Helper functions or global used files can keep in this folder**
+### test - testing framework directory
+### views - contains images and files
+### index.js - start point of the server application, here we mention express app and routes
+### package.json & package-lock.json - package manager create this file, keep record of all the packages used in node project
 
-2. For complete MERN project setup please follow the link -
-https://www.querythreads.com/how-to-organise-file-structure-of-backend-and-frontend-in-mern/
+**Note: For complete MERN project setup please follow the link `https://www.querythreads.com/how-to-organise-file-structure-of-backend-and-frontend-in-mern/`**
 
 3. For middleware refere link - 
 https://mongoosejs.com/docs/middleware.html#pre
