@@ -16,19 +16,19 @@ We can divide folder structure in 3 parts -
 3. We can add Mocha/Tea testing framework that is used to perform tests within our application.It makes sure everything works correctly. 
 4. Commands to create Node.js project in Backend folder.
 
-4.1 ### `$ npm init` OR `$ npm init -y`
+### `$ npm init` OR `$ npm init -y`
 - initiate node in folder and this will create package.json and  package.lock
-4.2 ### `$ npm install --save-dev babel-cli` 
+### `$ npm install --save-dev babel-cli` 
 - Babel is mainly used to compile JavaScript code, which will have backward compatibility.
-4.3 ### `$ npm i body-parser` 
+### `$ npm i body-parser` 
 - Node.js body parsing middleware. Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
-4.4 ### `$ npm i mongodb` 
+### `$ npm i mongodb` 
 - install mongodb package in folder - we will gonna use mongoose for connection between node and mongodb database  
-4.5 ### `$ npm i mongoose` 
+### `$ npm i mongoose` 
 - Object Data Modeling (ODM) library for MongoDB and Node. Mongoose provides a straight-forward, schema-based solution to model your application data.
-4.6 ### `$ npm i nodemon` 
+### `$ npm i nodemon` 
 - Simple monitoring tool, tool that helps develop node. js based applications by automatically restarting the node application when file changes in the directory are detected. 
-4.7 ### `$ npm i validator`  
+### `$ npm i validator`  
 - Vaidator is very popular pacge that used to make validation in a easy way for any form. 
 
 ### `npm run build`
