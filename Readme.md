@@ -72,7 +72,7 @@ We can divide folder structure in 3 parts -
 
 ## `Global`
 
-**1. Initiate Git and create gitignore file in root directory so that we can push our frontend and backend code in one respository**
+**1. Initiate `Git` and create `gitignore file` in root directory so that we can push our frontend and backend code in one respository**
 
 **2. Initiate node in root directory using `$ npm init`, this will create package.json for `global` root directory. In global directory we will going to install 2 packages - concurrently and nodemon**
 
