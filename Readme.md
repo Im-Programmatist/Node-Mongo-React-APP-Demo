@@ -15,21 +15,32 @@ We can divide folder structure in 3 parts -
 2. We will have to make separate node_module folder for backend using initiating the node package. So, using this special package.json we can install all the packages which is only required for server related developement. 
 3. We can add Mocha/Tea testing framework that is used to perform tests within our application.It makes sure everything works correctly. 
 4. Commands to create Node.js project in Backend folder.
-
-### `$ npm init` OR `$ npm init -y`
+#### `$ npm init` OR `$ npm init -y`
 - initiate node in folder and this will create package.json and  package.lock
-### `$ npm install --save-dev babel-cli` 
+#### `$ npm install --save-dev babel-cli` 
 - Babel is mainly used to compile JavaScript code, which will have backward compatibility.
-### `$ npm i body-parser` 
+#### `$ npm i body-parser` 
 - Node.js body parsing middleware. Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
-### `$ npm i mongodb` 
+#### `$ npm i mongodb` 
 - install mongodb package in folder - we will gonna use mongoose for connection between node and mongodb database  
-### `$ npm i mongoose` 
+#### `$ npm i mongoose` 
 - Object Data Modeling (ODM) library for MongoDB and Node. Mongoose provides a straight-forward, schema-based solution to model your application data.
-### `$ npm i nodemon` 
+#### `$ npm i nodemon` 
 - Simple monitoring tool, tool that helps develop node. js based applications by automatically restarting the node application when file changes in the directory are detected. 
-### `$ npm i validator`  
+#### `$ npm i validator`  
 - Vaidator is very popular pacge that used to make validation in a easy way for any form. 
+#### `$ npm install mocha chai --save-dev`
+- Mocha is a relatively fast and straightforward JavaScript test framework hosted on GitHub.
+#### We will keep on addinckages as per our need
+
+5. Folder Structure as below -
+#### node_module - created by default using npm init
+#### src- Source where all working folder place
+#### test - testing framework directory
+#### views - contains images and files
+#### index.js - start point of the server application
+#### package.json & package-lock.json - package manager create this file, keep record of all the packages used in node project
+
 
 ### `npm run build`
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
