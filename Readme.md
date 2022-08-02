@@ -62,16 +62,24 @@ We can divide folder structure in 3 parts -
 
 **Note: For virtual in mongoose refere link -** https://mongoosejs.com/docs/tutorials/virtuals.html
 
+## `Frontend`
+
+**1. Create React app inside `Frontend` directory.** OR
+
+**2. We can initiate npm int this folder and install node package `$ npm i react --save-dev`
+    and `$ npm i react-dom --save-dev` and then required packages.**
+
+
 ## `Global`
 
 **1. Initiate Git and create gitignore file in root directory so that we can push our frontend and backend code in one respository**
 
 **2. Initiate node in root directory using `$ npm init`, this will create package.json for `global` root directory. In global directory we will going to install 2 packages - concurrently and nodemon**
 
-#### 1. `$ npm i concurrently --save-dev`
+### 1. `$ npm i concurrently --save-dev`
 - Concurrently is an npm package that allows you to run multiple commands concurrently.
 
-#### `$ npm i nodemon` 
+### 2. `$ npm i nodemon` 
 - Simple monitoring tool, tool that helps develop node. 
 
 **3. Change start and dev path under script in package.json in `Backend`folder, make it  `"test": "mocha", "start": "node index.js", "dev": "nodemon index.js"`**
@@ -87,4 +95,3 @@ We can divide folder structure in 3 parts -
 
 **8. Just keep in mind both app must have different port to start.**
 
-## `Frontend`
