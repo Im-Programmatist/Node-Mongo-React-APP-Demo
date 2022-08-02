@@ -31,24 +31,16 @@ We can divide folder structure in 3 parts -
 - Vaidator is very popular pacge that used to make validation in a easy way for any form. 
 #### `$ npm install mocha chai --save-dev`
 - Mocha is a relatively fast and straightforward JavaScript test framework hosted on GitHub.
-#### We will keep on addinckages as per our need
+#### We will keep on adding packages as per our need
 
 5. Folder Structure as below -
-#### node_module - created by default using npm init
-#### src- Source where all working folder place
+#### **node_module - created by default using npm init
+#### **src- Source where all working folder place
 #### test - testing framework directory
 #### views - contains images and files
 #### index.js - start point of the server application
 #### package.json & package-lock.json - package manager create this file, keep record of all the packages used in node project
-
-
-### `npm run build`
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-`eject`
-
-
-For Express Js project structure - please refere below blog link
-https://blog.logrocket.com/organizing-express-js-project-structure-better-productivity/
+**For Express Js project structure - please refere below blog link https://blog.logrocket.com/organizing-express-js-project-structure-better-productivity/
 
 2. For complete MERN project setup please follow the link -
 https://www.querythreads.com/how-to-organise-file-structure-of-backend-and-frontend-in-mern/
