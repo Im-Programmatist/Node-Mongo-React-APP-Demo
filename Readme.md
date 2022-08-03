@@ -31,6 +31,8 @@ We can divide folder structure in 3 parts -
 - Vaidator is very popular pacge that used to make validation in a easy way for any form. 
 #### `$ npm install mocha chai --save-dev`
 - Mocha is a relatively fast and straightforward JavaScript test framework hosted on GitHub.
+#### `$ npm i hbs`
+- Using hbs as the default view engine requires just one line of code in your app setup. This will render .hbs files when res.render is called.
 #### We will keep on adding packages as per our need
 
 5. Folder Structure as below -
@@ -52,7 +54,8 @@ We can divide folder structure in 3 parts -
 **7. Utils - Helper functions or global used files can keep in this folder**
 
 ### test - testing framework directory
-### views - contains images and files
+### views - contains render hbs files if you want to run UI/presentation part using pure node js.
+### public - contains images,css files and storage folder like for download(report csv file we need to create it and pass path in api response), 
 ### index.js - start point of the server application, here we mention express app and routes
 ### package.json & package-lock.json - package manager create this file, keep record of all the packages used in node project
 
@@ -82,7 +85,7 @@ We can divide folder structure in 3 parts -
 ### 2. `$ npm i nodemon` 
 - Simple monitoring tool, tool that helps develop node. 
 
-**3. Change start and dev path under script in package.json in `Backend`folder, make it  `"test": "mocha", "start": "node index.js", "dev": "nodemon index.js"`**
+**3. Change start and dev path under script in package.json in `Backend`folder, make it  `"test": "mocha", "start": "node index.js", "dev": "nodemon index.js -e js,hbs"`** herer we have define to track changes in js as well as hbs files.
 
 **4. Change dev path under script item in package.json of root directory, make it  `"dev": "concurrently \"cd Backend && npm run dev\" \"cd Frontend && npm start\" "`**
 
