@@ -4,8 +4,14 @@ import { User } from "../models/users.model.js";
 export const create = async(request) => {
     let queryResult = {};
     try{
+        if(request.hashedPassword !== request.re_pass){
+            queryResult.message = 'password not match';
+            queryResult.status = 401;
+            return queryResult
+        } 
+        delete request.re_pass;
+        delete request.signup;
         const userRecord = new User(request);
-        console.log("user record - ",userRecord.domain, userRecord.fullName);
         const docResult = await userRecord.save();
         //const result = await userRecord.insertMany([userRecord]);
         //const result = await User.insertMany(request, {forceServerObjectId: true},{ordered:true});

@@ -4,8 +4,9 @@ import validator from 'validator';
 import bcrypt  from "bcryptjs"
 
 //By default, Mongoose adds an _id property to your schemas.
-const schema = new Schema();
-schema.path('_id'); // ObjectId { ... }
+//const schema = new Schema();
+//schema.path('_id'); // ObjectId { ... }
+
 //To include virtuals in res.json(), you need to set the toJSON schema option to { virtuals: true }.
 const opts = { toJSON: { virtuals: true } };
 //Schema with inbuild validation 
@@ -33,7 +34,7 @@ const usersSchema = new Schema({
         required:true,
         trim:true,
         minLength:5,
-        maxLength:10
+        maxLength:15
     },
     hashedPassword:  {
         type:String, // String is shorthand for {type: String}
@@ -100,12 +101,11 @@ usersSchema.methods.comparePassword = function(candidatePassword, cb) {
 // Create a virtual property `fullName` with a getter and setter.
 usersSchema.virtual('fullName').
     get(function() { 
-        console.log("virtual fullName : ",this.fname.this.lname);
+        //console.log("virtual fullName : ",this.fname, this.lname);
         //this.full_name = `${this.fname} ${this.lname}`;
         return `${this.fname} ${this.lname}`; 
     }).
     set(function(v) {
-        console.log("v",v);
         // `v` is the value being set, so use the value to set
         // `firstName` and `lastName`.
         const firstName = v.substring(0, v.indexOf(' '));
@@ -118,7 +118,7 @@ usersSchema.virtual('fullName').
 // Create a virtual property `domain` that's computed from `email`.
 
 usersSchema.virtual('domain').get(function() {
-    console.log("virtual domain : ",this.email);
+    //console.log("virtual domain : ",this.email);
     return this.email.slice(this.email.indexOf('@') + 1);
 });
 
@@ -136,7 +136,7 @@ usersSchema.virtual('domain').get(function() {
 //Define middleware before the model compile then only run it.
 //Mongoose middleware - use to process data before store in database
 usersSchema.pre('save', function(next) {
-    console.log('this gets printed first');
+    //console.log('this gets printed first');
     next();
 });
 
@@ -145,7 +145,6 @@ usersSchema.pre("save", function(next) {
     var userRecord = this;
     // only hash the password if it has been modified (or is new)
     if (!userRecord.isModified('hashedPassword')) return next();
-    console.log("userRecord.hashedPassword : - ",userRecord.hashedPassword);
     // Make Hash password using bcrypt library - generate a salt
     bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
         if (err) return next(err);
@@ -159,9 +158,21 @@ usersSchema.pre("save", function(next) {
     });
 });
 
+/*implement middleware that check validation of schema while update records*/
+usersSchema.pre('updateMany', function (next) {
+    //actully we append this option to query statement like collation for case insensiveness  
+    this.options.runValidators = true;
+    next();
+});
+
+usersSchema.pre('findByIdAndUpdate', function (next) {
+    this.options.runValidators = true;
+    next();
+});
+
 //Define middleware before the model compile then only run it.
 usersSchema.post('save', function(doc) {
-    console.log('email domain - %s & full name -%s, has been saved', doc.domain,doc.fullName);
+    //console.log('email domain - %s & full name -%s, has been saved', doc.domain,doc.fullName);
     // Vanilla JavaScript assignment triggers the setter
     //doc.fullName = 'Jean-Luc Picard';
 });
