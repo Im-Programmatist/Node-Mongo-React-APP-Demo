@@ -1,12 +1,9 @@
 import mongoose from "mongoose";
 import { User } from "../models/users.model.js";
-import "../middlewares/userRegistration-middleware.js";
-
-//const UserSchema = new mongoose.model('user', User); 
+//const UserSchema = new mongoose.model('User', User); 
 export const create = async(request) => {
     let queryResult = {};
     try{
-
         const userRecord = new User(request);
         console.log("user record - ",userRecord.domain, userRecord.fullName);
         const docResult = await userRecord.save();
