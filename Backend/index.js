@@ -31,6 +31,8 @@ app.use(express.urlencoded({extended: true}));
 // parse application/json
 //app.use(bodyParser.json())
 
+
+/****************************NODE JS WEBSITE************************************************/
 //We want to run website on pure Node Js for this we have to use hbs template engine and static paths
 const static_path = path.join(__dirname, "/public");  //find index.html inside public if not found then run template/index.hbs
 const template_path = path.join(__dirname, "views/templates");
@@ -47,15 +49,15 @@ app.get('/', (req, res) => {
 });
 
 app.get('/register', (req, res) => {
-	res.render("index");
+	res.render("registration");
 });
 
-/*Use global middle ware here*/
-app.use(requestTime);
-/* Error handler middleware */
-app.use(errorHandler);
+app.get('/login', (req, res) => {
+	res.render("login");
+});
 
-app.get('/login', authorizeUsersAccess, async(req, res) => {
+
+app.get('/login-test', authorizeUsersAccess, async(req, res) => {
 	try{
 		res.status(201).send("Login Page")
 	}
@@ -73,6 +75,14 @@ function authorizeUsersAccess(req, res, next) {
 	res.send('ERROR: You must be an admin')
 	}
 }
+
+/****************************NODE JS WEBSITE************************************************/
+
+/*Use global middle ware here*/
+app.use(requestTime);
+/* Error handler middleware */
+app.use(errorHandler);
+
 
 app.use('/user-registration', registrationRouter);
 
