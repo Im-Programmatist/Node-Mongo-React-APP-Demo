@@ -8,14 +8,21 @@
 					<div class="display-t js-fullheight">
 						<div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
 							<div class="profile-thumb" style="background: url(/public/images/user-3.jpg);"></div>
-							<h1><span>Chetan Patil</span></h1>
+							{{#if flashMessage.isName}} 
+							<h1><span>{{flashMessage.name}}</span></h1>
 							<h3><span>Web Developer / Software Solution Architect</span></h3><br/>
+							{{else}} 
+							<h1><span>Hello</span></h1>
+							<h3><span>Login to see details</span></h3><br/>
+							{{/if}}
                             <h3>
 								<span>
 									<a style="color: white;" href="/register" >Register</a> / 
-									<a style="color: white;" href="/login" >Login</a> /
 									<a style="color: white;" href="/about" >About</a> / 
-									<a style="color: white;" href="/experience" >My Resume</a>
+									<a style="color: white;" href="/experience" >My Resume</a> /
+									<a style="color: white;" href="/contact" >Contact us</a> /
+									<a style="color: white;" href="/login" >Login</a> /
+									<a style="color: white;" href="/logout" >Logout</a>
 								</span>
 							</h3>
 							<p>

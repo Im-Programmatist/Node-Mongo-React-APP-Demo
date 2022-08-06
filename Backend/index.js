@@ -8,6 +8,7 @@ import bodyParser from 'body-parser';
 import registrationRouter from './src/routes/registration.route.js';
 import loginRouter from './src/routes/login.route.js';
 import usersRouter from './src/routes/users.router.js';
+import contactusRouter from './src/routes/contactus.route.js';
 import { establishConn } from './src/services/connection.service.js';
 import { connection_config } from './src/configs/mongodb.config.js';
 import  { requestTime }  from "./src/middlewares/reqTime.middleware.js";
@@ -75,21 +76,17 @@ function errorNotification (err, str, req) {
 }
 
 //VIew Routes
-app.get('/', jwtAuthVerify, (req, res) => {
-	res.render("index",{flashMessage:{"message":`Welcome ${req.cookies.fullName}`,isFlash:true}});
+app.get('/', (req, res) => {
+	if(req.cookies.fullName !== undefined)
+		res.render("index",{flashMessage:{"message":`Welcome ${req.cookies.fullName}`,isFlash:true,isName : req.cookies.jwt ? true : false,name: req.cookies.fullName}});
+	else
+		res.render("index");
 	//res.send(req.flash('message'));
 });
 
-app.get('/register', (req, res) => {
-	res.render("registration",{flashMessage:{isFlash:false}});
-});
+app.use('/login', loginRouter, jwtAuthVerify);
 
-app.get('/login', jwtAuthVerify, (req, res) => {
-	if(req.cookies.fullName!==undefined)
-		res.render("login",{flashMessage:{"message":`${req.cookies.fullName}, you are logout successfully!`,isFlash:true}});
-	else
-		res.render("login");
-});
+app.use('/register', registrationRouter);
 
 app.get('/about', (req, res) => {
 	res.render("about",{flashMessage:{isFlash:false}});
@@ -99,20 +96,23 @@ app.get('/experience', jwtAuthVerify, (req, res) => {
 	res.render("experience",{flashMessage:{isFlash:false}});
 });
 
+app.use('/contact', contactusRouter, jwtAuthVerify); 
+
 app.get('/logout', jwtAuthVerify, async (req, res) => {
+	
 	req.user.tokens = req.user.tokens.filter((currentElement, index, array)=>{
 		return currentElement.token !== req.token;
-	});//Remove from database
+	});//Remove only the token which is use on this device in array from document of collection in mongodb
+	req.user.tokens = [];//Remove all token in array from document of collection in mongodb
 	res.clearCookie('jwt');//Remove from cookies
+	res.clearCookie('fullName');//Remove from cookies
+	//res.cookie('jwt', {maxAge: 0});
+	//res.cookie('fullName', {maxAge: 0});
+	res.clearCookie();
 	console.log("Logout successfully!");
 	await req.user.save();//we want to save data after logout
 	res.redirect("/login");
 });
-
-//Website API 
-app.use('/user-registration', registrationRouter);
-app.use('/user-login', loginRouter);
-app.use('/users', usersRouter);
 
 /****************************END NODE JS WEBSITE************************************************/
 

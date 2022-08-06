@@ -5,37 +5,44 @@
     <!-- Sign up form -->
     <section class="signup">
         <div class="container">
+            {{#if flashMessage.isName}}
+            <div class="form-group form-button">
+                <form method="pgetut" class="register-form" id="update-user-form" action="/register/fetchExistingUserInfo/">
+                    <input type="submit" name="update" id="updateUser" class="form-info" value="Click here to update {{flashMessage.name}}'s user details"/>
+                </form>
+            </div>
+            {{/if}}
             <div class="signup-content">
                 <div class="signup-form">
                     <h2 class="form-title">Sign up</h2>
-                    <form method="POST" class="register-form" id="register-form" action="/user-registration">
+                    <form method="POST" class="register-form" id="register-form" action="/register/{{flashMessage.result._id}}">
                         <div class="form-group">
                             <label for="fname"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" name="fname" id="fname" placeholder="Your First Name"/>
+                            <input type="text" name="fname" id="fname" value="{{flashMessage.result.fname}}" placeholder="Your First Name"/>
                         </div>
                         <div class="form-group">
                             <label for="lname"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" name="lname" id="lname" placeholder="Your Last Name"/>
+                            <input type="text" name="lname" id="lname" value="{{flashMessage.result.lname}}" placeholder="Your Last Name"/>
                         </div>
                         <div class="form-group">
                             <label for="email"><i class="zmdi zmdi-email"></i></label>
-                            <input type="email" name="email" id="email" placeholder="Your Email"/>
+                            <input type="email" name="email" id="email" value="{{flashMessage.result.email}}" placeholder="Your Email"/>
                         </div>
                         <div class="form-group">
                             <label for="username"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" name="username" id="username" placeholder="Your Username"/>
+                            <input type="text" name="username" id="username" value="{{flashMessage.result.username}}" placeholder="Your Username"/>
                         </div>
                         <div class="form-group">
                             <label for="address.city"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" name="address.city" id="address['city']" placeholder="Your City"/>
+                            <input type="text" name="address.city" id="address['city']" value="{{flashMessage.result.address.city}}" placeholder="Your City"/>
                         </div>
                         <div class="form-group">
                             <label for="address.state"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" name="address.state" id="address.state" placeholder="Your State"/>
+                            <input type="text" name="address.state" id="address.state" value="{{flashMessage.result.address.state}}" placeholder="Your State"/>
                         </div>
                         <div class="form-group">
                             <label for="address.Country"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" name="address.country" id="address.country" placeholder="Your Country"/>
+                            <input type="text" name="address.country" id="address.country" value="{{flashMessage.result.address.country}}" placeholder="Your Country"/>
                         </div>
                         <div class="form-group">
                             <label for="hashedPassword"><i class="zmdi zmdi-lock"></i></label>
@@ -46,13 +53,17 @@
                             <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"/>
                         </div>
                         <div class="form-group form-button">
-                            <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                            {{#if flashMessage.result}}
+                                <input type="submit" name="update" id="signup" class="form-submit" value="Update"/>
+                            {{else}}
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                            {{/if}}
                         </div>
                     </form>
                 </div>
                 <div class="signup-image">
                     <figure><img src="/public/images/signup-image.jpg" alt="sing up image"></figure>
-                    <a href="/login" class="signup-image-link">I am already member</a>
+                    <a href="/login" method="get" class="signup-image-link">I am already member</a>
                 </div>
             </div>
         </div>

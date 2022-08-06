@@ -124,8 +124,6 @@ usersSchema.methods.generateToken = async function() {
 // Create a virtual property `fullName` with a getter and setter.
 usersSchema.virtual('fullName').
     get(function() { 
-        //console.log("virtual fullName : ",this.fname, this.lname);
-        //this.full_name = `${this.fname} ${this.lname}`;
         return `${this.fname} ${this.lname}`; 
     }).
     set(function(v) {
@@ -153,14 +151,29 @@ usersSchema.virtual('domain').get(function() {
 // Instead it is caught by this setter which performs the hashing and saves the hash to the document's hash property.
 // usersSchema.virtual('password').set(function(value) {
 //     const salt = bcrypt.genSaltSync(10)
-//     this.hashedPassword = bcrypt.hashSync(value, salt)
+//     this.hashedPassword = bcrypt.hashSync(this.hashed, salt)
 // })
 
 //Define middleware before the model compile then only run it.
 //Mongoose middleware - use to process data before store in database
-usersSchema.pre('save', function(next) {
-    //console.log('this gets printed first');
-    next();
+usersSchema.pre('updateOne', function (next) {
+    //const data = this.getUpdate();
+    const userRecord = this;
+    const password = this.getUpdate().$set.hashedPassword;
+    if (!password) {
+       return next();
+    }else{
+        bcrypt.genSalt(10, function(err, salt) {
+            if (err) return next(err);
+            // hash the password using our new salt
+            bcrypt.hash(password, salt, function(err, hash) {
+                if (err) return next(err);
+                // override the cleartext password with the hashed one
+                userRecord.getUpdate().$set.hashedPassword = hash;
+                next();
+            },this);
+        },this);
+    }
 });
 
 usersSchema.pre("save", function(next) {

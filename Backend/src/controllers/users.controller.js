@@ -12,8 +12,6 @@ async function create(req, res, next) {
 }
 
 async function fetch(req, res, next) {
-    //Checking middleware
-    //console.log("request time is : ",req.requestTime);
     try {
         res.status(200).json(await _fetch(req));
     } catch (err) {
@@ -21,6 +19,7 @@ async function fetch(req, res, next) {
         next(err);
     }
 }
+
 async function update(req, res, next) {
     try {
         res.status(200).json(await _update(req));

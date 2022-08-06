@@ -77,7 +77,6 @@ export const updateById = async(request) => {
 }//END update by id
 
 export const deleteUser = async(request) => {
-    console.log(mongoose.Types.ObjectId.isValid(request.params.id));
     try{
         const docResult = await User.findOneAndDelete({$or: [{"_id":request.params.id},{"fname": request.params.fname},
         {"lname": request.params.lname},{"email":request.params.email}]})
