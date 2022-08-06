@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 import validator from 'validator';
-import bcrypt  from "bcryptjs"
-
+import bcrypt  from "bcryptjs";
+import jwt from "jsonwebtoken";
 //By default, Mongoose adds an _id property to your schemas.
 //const schema = new Schema();
 //schema.path('_id'); // ObjectId { ... }
@@ -83,15 +83,38 @@ const usersSchema = new Schema({
         type:Number,
         min:10,
         max:12
-    }
+    },
+    tokens:[{
+        token:{
+            type:String,
+            required:true
+        }
+    }]
 //});
 },opts);
 
 usersSchema.methods.comparePassword = function(candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+    const abc  = bcrypt.compare(candidatePassword, this.hashedPassword, function(err, isMatch) {
         if (err) return cb(err);
         cb(null, isMatch);
     });
+};
+
+//Generating token
+usersSchema.methods.generateToken = async function() {
+    try{
+        //Simple token 
+        var tokenSample = jwt.sign({ _id: this._id }, process.env.JWT_SECRETE_KEY,{ expiresIn: 60 * 60 });
+        console.log("Token Sample - ", tokenSample);
+        // sign with RSA SHA256 - create token
+        // var tokenRSA = jwt.sign({ email: this.email }, process.env.JWT_SECRETE_KEY, { algorithm: 'RS256'},{ expiresIn: 60 * 60 });
+        //console.log("Token RSA - ", tokenRSA); 
+        this.tokens = this.tokens.concat({token:tokenSample});
+        await this.save();
+        return tokenSample;
+    }catch(error){
+        console.log("token could not generate ");
+    }
 };
 
 /*VIRTUAL*/
