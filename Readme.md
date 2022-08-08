@@ -1,4 +1,5 @@
-# Complete MERN project folder structure -
+
+# Complete MERN Demo Sample -
 
 Generaly when we start working on full stack project with `Node.js`,`Mongo DB` and `React.Js` technology. We make different folder structure or server resources for server and client. There would be separate directory or project repositories we used. This will be preferable for teams those working on separate technology.
 

@@ -12,4 +12,3 @@ export const connection_config = {
         dbname: 'practice-mern-app-db'
     }
 };
-
